@@ -22,7 +22,7 @@ class KafkaReader(object):
     def _connect(self):
         if self.port == '':
             connection = self.host
-        else
+        else:
             connection = "{0}:{1}".format(self.host, self.port)
         logging.info("Connecting to Kafka at %s...", connection)
         self.consumer = KafkaConsumer(self.topic,
