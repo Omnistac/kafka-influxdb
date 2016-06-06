@@ -25,9 +25,15 @@ class KafkaReader(object):
         else:
             connection = ["{0}:{1}".format(self.host, self.port)]
         logging.info("Connecting to Kafka at %s...", connection)
-        self.consumer = KafkaConsumer(self.topic,
-                                      group_id=self.group,
-                                      bootstrap_servers=connection)
+        
+        if len(self.topic) > 1:
+            self.consumer = KafkaConsumer(*self.topic,
+                                          group_id=self.group,
+                                          bootstrap_servers=connection)
+        else:
+            self.consumer = KafkaConsumer(self.topic,
+                                          group_id=self.group,
+                                          bootstrap_servers=connection)
 
     def read(self):
         """
