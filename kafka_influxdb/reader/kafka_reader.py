@@ -29,11 +29,13 @@ class KafkaReader(object):
         if len(self.topic) > 1:
             self.consumer = KafkaConsumer(*self.topic,
                                           group_id=self.group,
-                                          bootstrap_servers=connection)
+                                          bootstrap_servers=connection,
+                                          api_version='0.9')
         else:
             self.consumer = KafkaConsumer(self.topic,
                                           group_id=self.group,
-                                          bootstrap_servers=connection)
+                                          bootstrap_servers=connection,
+                                          api_version='0.9')
 
     def read(self):
         """
